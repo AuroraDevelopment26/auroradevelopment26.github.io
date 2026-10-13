@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora-Dev | Downloads & Projects</title>
+    <title>Aurora-Dev | Downloads & Ressourcen</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,111 +12,130 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            500: '#38bdf8',
-                            600: '#0284c7',
+                        glass: {
+                            border: 'rgba(255, 255, 255, 0.12)',
+                            bg: 'rgba(15, 23, 42, 0.65)',
+                            card: 'rgba(30, 41, 59, 0.45)',
+                            cardHover: 'rgba(30, 41, 59, 0.75)',
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Font Awesome CDN für Icons -->
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased relative overflow-x-hidden selection:bg-sky-500 selection:text-white">
 
-    <!-- Header / Navigation -->
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Hintergrund Glow Effekte (Ambient Lighting) -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- Floating Navbar (Glas-Optik) -->
+    <header class="w-full max-w-6xl mx-auto px-6 py-6 sticky top-0 z-50">
+        <div class="backdrop-blur-xl bg-slate-900/40 border border-white/10 rounded-2xl px-6 py-4 flex justify-between items-center shadow-2xl shadow-black/20">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/20">
-                    A
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/30 text-lg">
+                    <i class="fa-solid fa-code"></i>
                 </div>
-                <span class="font-bold text-xl tracking-tight text-white">Aurora-Dev</span>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Aurora-Dev</span>
             </div>
-            <nav class="flex gap-6 text-sm font-medium text-slate-400">
+            <nav class="hidden sm:flex gap-8 text-sm font-medium text-slate-300">
                 <a href="#downloads" class="hover:text-sky-400 transition-colors">Downloads</a>
                 <a href="#about" class="hover:text-sky-400 transition-colors">Über uns</a>
             </nav>
+            <div class="flex items-center gap-3">
+                <button class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-white/15 hover:text-white transition-all">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-16">
-        <section class="text-center max-w-3xl mx-auto mb-20">
-            <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-500/10 rounded-full border border-sky-500/20 inline-block mb-4">
-                Willkommen bei Aurora-Dev
-            </span>
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6">
-                Software, Tools & <span class="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Ressourcen</span>
-            </h1>
-            <p class="text-lg text-slate-400 leading-relaxed mb-8">
-                Laden Sie hier unsere aktuellen Projekte, Vorlagen und Tools herunter.
-            </p>
-            <a href="#downloads" class="inline-flex items-center gap-2 px-6 py-3 bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold rounded-xl transition-all shadow-lg shadow-sky-500/25 hover:scale-[1.02]">
-                Zu den Downloads
-                <i class="fa-solid fa-arrow-down"></i>
-            </a>
-        </section>
+    <!-- Main Content -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-12 flex flex-col justify-center">
+        
+        <!-- Sektion: Downloads -->
+        <section id="downloads" class="w-full">
+            <div class="flex items-center justify-between mb-10">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-500/10 border border-sky-500/20 px-3 py-1 rounded-full mb-3 inline-block">
+                        Ressourcen & Software
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
+                        Verfügbare Downloads 
+                        <i class="fa-solid fa-cloud-arrow-down text-sky-400 animate-pulse"></i>
+                    </h2>
+                </div>
+            </div>
 
-        <!-- Downloads Grid Section -->
-        <section id="downloads" class="scroll-mt-24">
-            <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                <i class="fa-solid fa-download text-sky-400"></i>
-                Verfügbare Downloads
-            </h2>
+            <!-- Karten Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <!-- Download Card 1 -->
-                <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 hover:border-slate-600 transition-all flex flex-col justify-between">
+                <!-- Karte 1: Projekt Tool-Kit -->
+                <div class="backdrop-blur-xl bg-slate-900/50 border border-white/10 rounded-3xl p-8 hover:border-sky-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-xl shadow-black/40 flex flex-col justify-between group">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="text-xs font-mono px-2.5 py-1 bg-slate-700 text-slate-300 rounded-md">
-                                <i class="fa-solid fa-file-zipper mr-1"></i> ZIP / App
-                            </span>
-                            <span class="text-xs text-slate-500">v1.0.0</span>
+                        <!-- Header der Karte -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex items-center gap-2.5 px-3.5 py-1.5 bg-sky-500/10 border border-sky-500/20 rounded-xl text-sky-400 text-xs font-mono">
+                                <i class="fa-solid fa-file-zipper"></i>
+                                <span>ZIP / App</span>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400 bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">v1.0.0</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Projekt Tool-Kit</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                            Ein nützliches Paket mit Einstellungen, Vorlagen und Skripten für Entwickler.
+
+                        <!-- Titel & Beschreibung -->
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-sky-400 transition-colors flex items-center gap-2">
+                            Projekt Tool-Kit
+                        </h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-8">
+                            Umfassendes Entwickler-Paket mit Konfigurationen, modernen Boilerplates und nützlichen Skripten für den schnellen Start.
                         </p>
                     </div>
+
                     <!-- Download Button -->
-                    <a href="downloads/toolkit.zip" download class="w-full py-2.5 px-4 bg-slate-700 hover:bg-sky-600 text-white font-medium rounded-xl text-center transition-all flex items-center justify-center gap-2 group">
-                        <i class="fa-solid fa-download text-slate-400 group-hover:text-white transition-colors"></i>
-                        Datei Herunterladen
+                    <a href="downloads/toolkit.zip" download class="w-full py-3.5 px-5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-slate-950 font-semibold rounded-2xl text-center transition-all duration-300 flex items-center justify-center gap-2.5 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:scale-[1.01] active:scale-[0.99]">
+                        <i class="fa-solid fa-download text-slate-950"></i>
+                        <span>Datei Herunterladen</span>
                     </a>
                 </div>
 
-                <!-- Download Card 2 -->
-                <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 hover:border-slate-600 transition-all flex flex-col justify-between">
+                <!-- Karte 2: Benutzerhandbuch -->
+                <div class="backdrop-blur-xl bg-slate-900/50 border border-white/10 rounded-3xl p-8 hover:border-indigo-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-xl shadow-black/40 flex flex-col justify-between group">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="text-xs font-mono px-2.5 py-1 bg-slate-700 text-slate-300 rounded-md">
-                                <i class="fa-solid fa-file-pdf mr-1"></i> PDF
-                            </span>
-                            <span class="text-xs text-slate-500">Dokumentation</span>
+                        <!-- Header der Karte -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex items-center gap-2.5 px-3.5 py-1.5 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-mono">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span>PDF / Guide</span>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400 bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">v2.1.0</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Benutzerhandbuch</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                            Ausführliche Anleitung und Dokumentation zu unseren Projekten als PDF.
+
+                        <!-- Titel & Beschreibung -->
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors flex items-center gap-2">
+                            Benutzerhandbuch
+                        </h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-8">
+                            Ausführliche Dokumentation, Anleitungen und Best Practices zur optimalen Einrichtung und Nutzung aller Tools.
                         </p>
                     </div>
+
                     <!-- Download Button -->
-                    <a href="downloads/handbuch.pdf" download class="w-full py-2.5 px-4 bg-slate-700 hover:bg-sky-600 text-white font-medium rounded-xl text-center transition-all flex items-center justify-center gap-2 group">
-                        <i class="fa-solid fa-download text-slate-400 group-hover:text-white transition-colors"></i>
-                        PDF Herunterladen
+                    <a href="downloads/handbuch.pdf" download class="w-full py-3.5 px-5 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-semibold rounded-2xl text-center transition-all duration-300 flex items-center justify-center gap-2.5 hover:scale-[1.01] active:scale-[0.99]">
+                        <i class="fa-solid fa-download text-sky-400"></i>
+                        <span>PDF Herunterladen</span>
                     </a>
                 </div>
 
             </div>
         </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-500">
+    <footer class="w-full border-t border-white/10 bg-slate-950/80 backdrop-blur py-8 text-center text-xs text-slate-400 mt-12">
         &copy; 2026 Aurora-Dev. Alle Rechte vorbehalten.
     </footer>
 
