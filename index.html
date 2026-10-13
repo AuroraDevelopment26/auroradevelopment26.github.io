@@ -1,40 +1,67 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora-Dev Web</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+    <title>Aurora-Dev | Downloads & Projects</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#38bdf8',
+                            600: '#0284c7',
+                        }
+                    }
+                }
+            }
         }
-        .container {
-            text-align: center;
-            background: #1e293b;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            color: #38bdf8;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #94a3b8;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="container">
-        <h1>Willkommen bei Aurora-Dev!</h1>
-        <p>Diese Website wird bald verfügbar sein.</p>
-    </div>
-</body>
-</html>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/20">
+                    A
+                </div>
+                <span class="font-bold text-xl tracking-tight text-white">Aurora-Dev</span>
+            </div>
+            <nav class="flex gap-6 text-sm font-medium text-slate-400">
+                <a href="#downloads" class="hover:text-sky-400 transition-colors">Downloads</a>
+                <a href="#about" class="hover:text-sky-400 transition-colors">Über uns</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-16">
+        <section class="text-center max-w-3xl mx-auto mb-20">
+            <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-500/10 rounded-full border border-sky-500/20 inline-block mb-4">
+                Willkommen bei Aurora-Dev
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6">
+                Software, Tools & <span class="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Ressourcen</span>
+            </h1>
+            <p class="text-lg text-slate-400 leading-relaxed mb-8">
+                Laden Sie hier unsere aktuellen Projekte, Vorlagen und Tools herunter.
+            </p>
+            <a href="#downloads" class="inline-flex items-center gap-2 px-6 py-3 bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold rounded-xl transition-all shadow-lg shadow-sky-500/25 hover:scale-[1.02]">
+                Zu den Downloads
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </a>
+        </section>
+
+        <!-- Downloads Grid Section -->
+        <section id="downloads" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke
