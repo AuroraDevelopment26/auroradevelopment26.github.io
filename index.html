@@ -21,6 +21,8 @@
             }
         }
     </script>
+    <!-- Font Awesome CDN für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased">
 
@@ -54,14 +56,69 @@
             </p>
             <a href="#downloads" class="inline-flex items-center gap-2 px-6 py-3 bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold rounded-xl transition-all shadow-lg shadow-sky-500/25 hover:scale-[1.02]">
                 Zu den Downloads
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
+                <i class="fa-solid fa-arrow-down"></i>
             </a>
         </section>
 
         <!-- Downloads Grid Section -->
         <section id="downloads" class="scroll-mt-24">
             <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke
+                <i class="fa-solid fa-download text-sky-400"></i>
+                Verfügbare Downloads
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Download Card 1 -->
+                <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 hover:border-slate-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono px-2.5 py-1 bg-slate-700 text-slate-300 rounded-md">
+                                <i class="fa-solid fa-file-zipper mr-1"></i> ZIP / App
+                            </span>
+                            <span class="text-xs text-slate-500">v1.0.0</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Projekt Tool-Kit</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                            Ein nützliches Paket mit Einstellungen, Vorlagen und Skripten für Entwickler.
+                        </p>
+                    </div>
+                    <!-- Download Button -->
+                    <a href="downloads/toolkit.zip" download class="w-full py-2.5 px-4 bg-slate-700 hover:bg-sky-600 text-white font-medium rounded-xl text-center transition-all flex items-center justify-center gap-2 group">
+                        <i class="fa-solid fa-download text-slate-400 group-hover:text-white transition-colors"></i>
+                        Datei Herunterladen
+                    </a>
+                </div>
+
+                <!-- Download Card 2 -->
+                <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 hover:border-slate-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono px-2.5 py-1 bg-slate-700 text-slate-300 rounded-md">
+                                <i class="fa-solid fa-file-pdf mr-1"></i> PDF
+                            </span>
+                            <span class="text-xs text-slate-500">Dokumentation</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Benutzerhandbuch</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                            Ausführliche Anleitung und Dokumentation zu unseren Projekten als PDF.
+                        </p>
+                    </div>
+                    <!-- Download Button -->
+                    <a href="downloads/handbuch.pdf" download class="w-full py-2.5 px-4 bg-slate-700 hover:bg-sky-600 text-white font-medium rounded-xl text-center transition-all flex items-center justify-center gap-2 group">
+                        <i class="fa-solid fa-download text-slate-400 group-hover:text-white transition-colors"></i>
+                        PDF Herunterladen
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-500">
+        &copy; 2026 Aurora-Dev. Alle Rechte vorbehalten.
+    </footer>
+
+</body>
+</html>
