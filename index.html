@@ -1,143 +1,301 @@
 <!DOCTYPE html>
 <html lang="de" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora-Dev | Downloads & Ressourcen</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        glass: {
-                            border: 'rgba(255, 255, 255, 0.12)',
-                            bg: 'rgba(15, 23, 42, 0.65)',
-                            card: 'rgba(30, 41, 59, 0.45)',
-                            cardHover: 'rgba(30, 41, 59, 0.75)',
-                        }
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Aurora-Dev — ausgewählte Entwickler-Tools, Ressourcen und Dokumentationen an einem Ort.">
+  <title>Aurora-Dev — Developer Resources</title>
+
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("aurora-theme");
+        const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (saved === "light" || (!saved && prefersLight)) document.documentElement.classList.remove("dark");
+        else document.documentElement.classList.add("dark");
+      } catch (_) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+    tailwind = window.tailwind || {};
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+          }
         }
-    </script>
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root { color-scheme: dark; --accent: 56, 189, 248; }
+    html:not(.dark) { color-scheme: light; }
+    * { scroll-behavior: smooth; }
+    body { font-family: "DM Sans", sans-serif; }
+    h1,h2,h3,.brand-font { font-family: "Space Grotesk", sans-serif; }
+    .dark body { background: #080b14; color: #f8fafc; }
+    html:not(.dark) body { background: #f5f7fb; color: #111827; }
+    .ambient {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden;
+      background-image: linear-gradient(rgba(148,163,184,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+    }
+    .orb { position:absolute; border-radius:9999px; filter:blur(90px); opacity:.19; animation: drift 16s ease-in-out infinite alternate; }
+    .orb-one { width:32rem;height:32rem;top:-12rem;left:-8rem;background:#0284c7; }
+    .orb-two { width:28rem;height:28rem;top:16rem;right:-9rem;background:#6366f1;animation-delay:-6s; }
+    .orb-three { width:20rem;height:20rem;bottom:-8rem;left:40%;background:#0d9488;animation-delay:-10s; }
+    @keyframes drift { from { transform:translate3d(0,0,0) scale(1); } to { transform:translate3d(30px,24px,0) scale(1.08); } }
+    .glass { backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
+    .dark .glass { background:rgba(15,23,42,.58); border-color:rgba(148,163,184,.15); }
+    html:not(.dark) .glass { background:rgba(255,255,255,.78); border-color:rgba(148,163,184,.30); }
+    .surface { transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease,background .25s ease; }
+    .surface:hover { transform:translateY(-5px); box-shadow:0 24px 70px rgba(2,132,199,.12); }
+    .dark .muted { color:#94a3b8; }
+    html:not(.dark) .muted { color:#64748b; }
+    .dark .heading { color:#f8fafc; }
+    html:not(.dark) .heading { color:#0f172a; }
+    .dark .body-copy { color:#cbd5e1; }
+    html:not(.dark) .body-copy { color:#475569; }
+    .dark .nav-link { color:#cbd5e1; }
+    html:not(.dark) .nav-link { color:#475569; }
+    .dark .nav-link:hover { color:#7dd3fc; }
+    html:not(.dark) .nav-link:hover { color:#0369a1; }
+    .dark .soft-panel { background:rgba(15,23,42,.55);border-color:rgba(148,163,184,.14); }
+    html:not(.dark) .soft-panel { background:rgba(255,255,255,.75);border-color:rgba(148,163,184,.28); }
+    .dark .card-title { color:#f8fafc; }
+    html:not(.dark) .card-title { color:#0f172a; }
+    .dark .card-copy { color:#a8b5c8; }
+    html:not(.dark) .card-copy { color:#475569; }
+    .dark .divider { border-color:rgba(148,163,184,.14); }
+    html:not(.dark) .divider { border-color:rgba(148,163,184,.25); }
+    .focus-ring:focus-visible { outline:3px solid #38bdf8; outline-offset:4px; }
+    .download-btn { transition:transform .2s ease,filter .2s ease,box-shadow .2s ease; }
+    .download-btn:hover { transform:translateY(-1px);filter:brightness(1.08);box-shadow:0 12px 32px rgba(14,165,233,.2); }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important; }
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased relative overflow-x-hidden selection:bg-sky-500 selection:text-white">
+<body class="min-h-screen antialiased selection:bg-sky-400/30 selection:text-sky-950">
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div>
+  </div>
 
-    <!-- Hintergrund Glow Effekte (Ambient Lighting) -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
-    <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+  <header class="sticky top-0 z-50 px-4 sm:px-6 pt-4">
+    <nav class="glass mx-auto flex max-w-7xl items-center justify-between rounded-2xl border px-4 sm:px-6 py-3 shadow-2xl shadow-black/5" aria-label="Hauptnavigation">
+      <a href="#" class="focus-ring flex items-center gap-3 rounded-xl" aria-label="Aurora-Dev Startseite">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 text-white shadow-lg shadow-sky-500/20">
+          <i class="fa-solid fa-code" aria-hidden="true"></i>
+        </span>
+        <span class="brand-font text-lg font-bold tracking-tight heading">Aurora<span class="text-sky-500">-</span>Dev</span>
+      </a>
 
-    <!-- Floating Navbar (Glas-Optik) -->
-    <header class="w-full max-w-6xl mx-auto px-6 py-6 sticky top-0 z-50">
-        <div class="backdrop-blur-xl bg-slate-900/40 border border-white/10 rounded-2xl px-6 py-4 flex justify-between items-center shadow-2xl shadow-black/20">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/30 text-lg">
-                    <i class="fa-solid fa-code"></i>
-                </div>
-                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Aurora-Dev</span>
-            </div>
-            <nav class="hidden sm:flex gap-8 text-sm font-medium text-slate-300">
-                <a href="#downloads" class="hover:text-sky-400 transition-colors">Downloads</a>
-                <a href="#about" class="hover:text-sky-400 transition-colors">Über uns</a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <button class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-white/15 hover:text-white transition-all">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-            </div>
+      <div class="hidden items-center gap-8 sm:flex">
+        <a class="nav-link text-sm font-semibold transition-colors" href="#downloads">Downloads</a>
+        <a class="nav-link text-sm font-semibold transition-colors" href="#about">Über uns</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="#downloads" class="focus-ring hidden sm:inline-flex items-center gap-2 rounded-xl bg-sky-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-sky-400">
+          Ressourcen entdecken <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+        </a>
+        <button id="theme-toggle" type="button" class="focus-ring grid h-10 w-10 place-items-center rounded-xl border soft-panel transition hover:scale-105" aria-label="Farbschema wechseln" title="Hell-/Dunkelmodus wechseln">
+          <i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i>
+        </button>
+        <button id="mobile-menu-toggle" type="button" class="focus-ring grid h-10 w-10 place-items-center rounded-xl border soft-panel sm:hidden" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="glass mx-auto mt-2 hidden max-w-7xl rounded-2xl border p-3 sm:hidden">
+      <a href="#downloads" class="nav-link block rounded-xl px-4 py-3 text-sm font-semibold">Downloads</a>
+      <a href="#about" class="nav-link block rounded-xl px-4 py-3 text-sm font-semibold">Über uns</a>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6">
+    <section class="relative grid min-h-[540px] items-center gap-12 py-20 md:grid-cols-[1.15fr_.85fr] md:py-28" aria-labelledby="hero-title">
+      <div class="relative z-10">
+        <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-400/10 px-3.5 py-2 text-xs font-bold uppercase tracking-[.18em] text-sky-500">
+          <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-60"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-sky-500"></span></span>
+          Deine Dev-Zentrale
         </div>
-    </header>
+        <h1 id="hero-title" class="heading brand-font max-w-3xl text-5xl font-bold leading-[1.06] tracking-tight sm:text-6xl lg:text-7xl">
+          Gute Ideen.<br><span class="bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">Bessere Tools.</span>
+        </h1>
+        <p class="body-copy mt-7 max-w-xl text-base leading-8 sm:text-lg">
+          Willkommen bei Aurora-Dev. Entdecke praktische Entwickler-Tools, hilfreiche Ressourcen und Dokumentationen, die deine Projekte voranbringen.
+        </p>
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+          <a href="#downloads" class="download-btn focus-ring inline-flex items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-sky-400 to-blue-500 px-6 py-4 font-bold text-slate-950 shadow-xl shadow-sky-500/15">
+            <i class="fa-solid fa-cloud-arrow-down" aria-hidden="true"></i> Downloads entdecken
+          </a>
+          <a href="#about" class="focus-ring inline-flex items-center justify-center gap-2 rounded-xl border soft-panel px-6 py-4 font-semibold transition hover:border-sky-400/50">
+            Mehr über Aurora <i class="fa-solid fa-arrow-down text-xs muted" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm muted">
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-check-circle text-emerald-500" aria-hidden="true"></i> Schnell erreichbar</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-layer-group text-sky-500" aria-hidden="true"></i> Tools & Guides</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-mobile-screen-button text-indigo-500" aria-hidden="true"></i> Responsive</span>
+        </div>
+      </div>
 
-    <!-- Main Content -->
-    <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-12 flex flex-col justify-center">
-        
-        <!-- Sektion: Downloads -->
-        <section id="downloads" class="w-full">
-            <div class="flex items-center justify-between mb-10">
-                <div>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-500/10 border border-sky-500/20 px-3 py-1 rounded-full mb-3 inline-block">
-                        Ressourcen & Software
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
-                        Verfügbare Downloads 
-                        <i class="fa-solid fa-cloud-arrow-down text-sky-400 animate-pulse"></i>
-                    </h2>
-                </div>
+      <div class="relative mx-auto w-full max-w-md">
+        <div class="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-sky-500/20 via-indigo-500/10 to-teal-500/20 blur-2xl" aria-hidden="true"></div>
+        <div class="glass relative overflow-hidden rounded-[2rem] border p-5 shadow-2xl shadow-black/10 sm:p-6">
+          <div class="flex items-center justify-between border-b divider pb-4">
+            <div class="flex items-center gap-2.5">
+              <span class="flex gap-1.5"><i class="h-2.5 w-2.5 rounded-full bg-rose-400"></i><i class="h-2.5 w-2.5 rounded-full bg-amber-400"></i><i class="h-2.5 w-2.5 rounded-full bg-emerald-400"></i></span>
+              <span class="ml-2 text-xs font-semibold muted">aurora / resources</span>
             </div>
-
-            <!-- Karten Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                <!-- Karte 1: Projekt Tool-Kit -->
-                <div class="backdrop-blur-xl bg-slate-900/50 border border-white/10 rounded-3xl p-8 hover:border-sky-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-xl shadow-black/40 flex flex-col justify-between group">
-                    <div>
-                        <!-- Header der Karte -->
-                        <div class="flex justify-between items-center mb-6">
-                            <div class="flex items-center gap-2.5 px-3.5 py-1.5 bg-sky-500/10 border border-sky-500/20 rounded-xl text-sky-400 text-xs font-mono">
-                                <i class="fa-solid fa-file-zipper"></i>
-                                <span>ZIP / App</span>
-                            </div>
-                            <span class="text-xs font-mono text-slate-400 bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">v1.0.0</span>
-                        </div>
-
-                        <!-- Titel & Beschreibung -->
-                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-sky-400 transition-colors flex items-center gap-2">
-                            Projekt Tool-Kit
-                        </h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-8">
-                            Umfassendes Entwickler-Paket mit Konfigurationen, modernen Boilerplates und nützlichen Skripten für den schnellen Start.
-                        </p>
-                    </div>
-
-                    <!-- Download Button -->
-                    <a href="downloads/toolkit.zip" download class="w-full py-3.5 px-5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-slate-950 font-semibold rounded-2xl text-center transition-all duration-300 flex items-center justify-center gap-2.5 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:scale-[1.01] active:scale-[0.99]">
-                        <i class="fa-solid fa-download text-slate-950"></i>
-                        <span>Datei Herunterladen</span>
-                    </a>
-                </div>
-
-                <!-- Karte 2: Benutzerhandbuch -->
-                <div class="backdrop-blur-xl bg-slate-900/50 border border-white/10 rounded-3xl p-8 hover:border-indigo-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-xl shadow-black/40 flex flex-col justify-between group">
-                    <div>
-                        <!-- Header der Karte -->
-                        <div class="flex justify-between items-center mb-6">
-                            <div class="flex items-center gap-2.5 px-3.5 py-1.5 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-mono">
-                                <i class="fa-solid fa-file-pdf"></i>
-                                <span>PDF / Guide</span>
-                            </div>
-                            <span class="text-xs font-mono text-slate-400 bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">v2.1.0</span>
-                        </div>
-
-                        <!-- Titel & Beschreibung -->
-                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors flex items-center gap-2">
-                            Benutzerhandbuch
-                        </h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-8">
-                            Ausführliche Dokumentation, Anleitungen und Best Practices zur optimalen Einrichtung und Nutzung aller Tools.
-                        </p>
-                    </div>
-
-                    <!-- Download Button -->
-                    <a href="downloads/handbuch.pdf" download class="w-full py-3.5 px-5 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-semibold rounded-2xl text-center transition-all duration-300 flex items-center justify-center gap-2.5 hover:scale-[1.01] active:scale-[0.99]">
-                        <i class="fa-solid fa-download text-sky-400"></i>
-                        <span>PDF Herunterladen</span>
-                    </a>
-                </div>
-
+            <i class="fa-solid fa-ellipsis text-sm muted" aria-hidden="true"></i>
+          </div>
+          <div class="py-6">
+            <div class="mb-5 flex items-center justify-between">
+              <div><p class="text-xs font-semibold uppercase tracking-widest muted">Workspace</p><p class="card-title mt-1 text-xl font-bold">Deine Ressourcen</p></div>
+              <span class="grid h-11 w-11 place-items-center rounded-2xl bg-sky-500/10 text-xl text-sky-500"><i class="fa-solid fa-cubes" aria-hidden="true"></i></span>
             </div>
-        </section>
+            <div class="space-y-3">
+              <div class="soft-panel flex items-center gap-4 rounded-2xl border p-4">
+                <span class="grid h-12 w-12 place-items-center rounded-xl bg-sky-500/10 text-lg text-sky-500"><i class="fa-solid fa-file-zipper" aria-hidden="true"></i></span>
+                <div class="min-w-0 flex-1"><p class="card-title font-bold">Projekt Tool-Kit</p><p class="card-copy mt-1 text-xs">ZIP-Archiv · v1.0.0</p></div>
+                <i class="fa-solid fa-arrow-down-to-line muted" aria-hidden="true"></i>
+              </div>
+              <div class="soft-panel flex items-center gap-4 rounded-2xl border p-4">
+                <span class="grid h-12 w-12 place-items-center rounded-xl bg-rose-500/10 text-lg text-rose-500"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span>
+                <div class="min-w-0 flex-1"><p class="card-title font-bold">Benutzerhandbuch</p><p class="card-copy mt-1 text-xs">PDF-Dokument · v2.1.0</p></div>
+                <i class="fa-solid fa-arrow-down-to-line muted" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="mt-5 flex items-center gap-3 rounded-xl bg-emerald-500/10 px-4 py-3 text-sm text-emerald-600 dark:text-emerald-400">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Alles an einem zentralen Ort.</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between border-t divider pt-4 text-xs muted"><span><i class="fa-solid fa-terminal mr-1.5" aria-hidden="true"></i> Built for creators</span><span>AURORA_DEV</span></div>
+        </div>
+        <div class="glass absolute -right-3 -top-5 hidden items-center gap-2 rounded-xl border px-4 py-3 text-sm font-semibold shadow-xl sm:flex"><i class="fa-solid fa-bolt text-amber-400" aria-hidden="true"></i><span class="card-title">Ready to build</span></div>
+      </div>
+    </section>
 
-    </main>
+    <section id="downloads" class="scroll-mt-28 py-12 sm:py-16" aria-labelledby="downloads-title">
+      <div class="mb-9 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="mb-3 text-xs font-bold uppercase tracking-[.2em] text-sky-500">Die Bibliothek</p>
+          <h2 id="downloads-title" class="heading brand-font text-3xl font-bold tracking-tight sm:text-4xl">Downloads & Ressourcen</h2>
+          <p class="body-copy mt-3 max-w-2xl leading-7">Alles Wichtige für deinen nächsten Schritt — übersichtlich gesammelt und direkt erreichbar.</p>
+        </div>
+        <span class="muted text-sm"><i class="fa-solid fa-box-archive mr-2 text-sky-500" aria-hidden="true"></i>2 Ressourcen gelistet</span>
+      </div>
 
-    <!-- Footer -->
-    <footer class="w-full border-t border-white/10 bg-slate-950/80 backdrop-blur py-8 text-center text-xs text-slate-400 mt-12">
-        &copy; 2026 Aurora-Dev. Alle Rechte vorbehalten.
-    </footer>
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <article class="glass surface flex flex-col rounded-3xl border p-6 sm:p-8">
+          <div class="mb-7 flex items-start justify-between gap-4">
+            <span class="inline-flex items-center gap-2 rounded-xl border border-sky-400/20 bg-sky-400/10 px-3 py-2 text-xs font-bold text-sky-500"><i class="fa-solid fa-file-zipper" aria-hidden="true"></i> ZIP / APP</span>
+            <span class="rounded-lg border soft-panel px-3 py-1.5 font-mono text-xs muted">v1.0.0</span>
+          </div>
+          <div class="mb-6 flex items-start gap-4">
+            <div class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 text-2xl text-sky-500"><i class="fa-solid fa-box-open" aria-hidden="true"></i></div>
+            <div><h3 class="card-title text-2xl font-bold tracking-tight">Projekt Tool-Kit</h3><p class="card-copy mt-2 text-sm leading-6">Dein praktischer Werkzeugkasten für neue Projekte.</p></div>
+          </div>
+          <p class="card-copy mb-8 flex-1 leading-7">Ein Entwickler-Paket mit Konfigurationen, Boilerplates und nützlichen Skripten für einen schnelleren Start in deine nächste Idee.</p>
+          <div class="mb-5 flex flex-wrap gap-2 text-xs font-medium muted"><span class="rounded-lg border soft-panel px-3 py-2">Konfigurationen</span><span class="rounded-lg border soft-panel px-3 py-2">Starter-Dateien</span><span class="rounded-lg border soft-panel px-3 py-2">Skripte</span></div>
+          <a href="downloads/toolkit.zip" download class="download-btn focus-ring inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-sky-400 to-blue-500 px-5 py-4 font-bold text-slate-950">
+            <i class="fa-solid fa-download" aria-hidden="true"></i> Tool-Kit herunterladen <i class="fa-solid fa-arrow-right ml-auto text-sm" aria-hidden="true"></i>
+          </a>
+        </article>
 
+        <article class="glass surface flex flex-col rounded-3xl border p-6 sm:p-8">
+          <div class="mb-7 flex items-start justify-between gap-4">
+            <span class="inline-flex items-center gap-2 rounded-xl border border-rose-400/20 bg-rose-400/10 px-3 py-2 text-xs font-bold text-rose-500"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> PDF / GUIDE</span>
+            <span class="rounded-lg border soft-panel px-3 py-1.5 font-mono text-xs muted">v2.1.0</span>
+          </div>
+          <div class="mb-6 flex items-start gap-4">
+            <div class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-rose-400/20 to-orange-500/10 text-2xl text-rose-500"><i class="fa-solid fa-book-open" aria-hidden="true"></i></div>
+            <div><h3 class="card-title text-2xl font-bold tracking-tight">Benutzerhandbuch</h3><p class="card-copy mt-2 text-sm leading-6">Wissen, das dich schneller ans Ziel bringt.</p></div>
+          </div>
+          <p class="card-copy mb-8 flex-1 leading-7">Eine übersichtliche Dokumentation mit Anleitungen und Best Practices zur Einrichtung und Nutzung deiner Tools.</p>
+          <div class="mb-5 flex flex-wrap gap-2 text-xs font-medium muted"><span class="rounded-lg border soft-panel px-3 py-2">Dokumentation</span><span class="rounded-lg border soft-panel px-3 py-2">Anleitungen</span><span class="rounded-lg border soft-panel px-3 py-2">Best Practices</span></div>
+          <a href="downloads/handbuch.pdf" download class="focus-ring inline-flex w-full items-center justify-center gap-3 rounded-xl border soft-panel px-5 py-4 font-bold transition hover:border-rose-400/50 hover:bg-rose-500/5">
+            <i class="fa-solid fa-download text-rose-500" aria-hidden="true"></i> Handbuch herunterladen <i class="fa-solid fa-arrow-right ml-auto text-sm muted" aria-hidden="true"></i>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="scroll-mt-28 pb-20 pt-8 sm:pb-28" aria-labelledby="about-title">
+      <div class="glass relative overflow-hidden rounded-3xl border p-7 sm:p-10">
+        <div class="absolute -right-12 -top-20 h-64 w-64 rounded-full bg-sky-500/10 blur-3xl" aria-hidden="true"></div>
+        <div class="relative grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+          <div class="max-w-2xl">
+            <p class="mb-3 text-xs font-bold uppercase tracking-[.2em] text-sky-500">Über das Projekt</p>
+            <h2 id="about-title" class="heading brand-font text-3xl font-bold tracking-tight">Ein Ort für gute Ideen.</h2>
+            <p class="body-copy mt-4 leading-7">Aurora-Dev bündelt Tools und hilfreiche Ressourcen an einem Ort. Das Ziel: weniger suchen, schneller loslegen und mehr Zeit für das eigentliche Entwickeln haben.</p>
+          </div>
+          <a href="#downloads" class="focus-ring inline-flex items-center justify-center gap-3 rounded-xl border soft-panel px-5 py-4 font-bold transition hover:border-sky-400/50"><i class="fa-solid fa-arrow-up text-sky-500" aria-hidden="true"></i> Zurück zu den Downloads</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t divider">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-7 text-center text-sm muted sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:text-left">
+      <a href="#" class="brand-font font-bold tracking-tight heading">Aurora<span class="text-sky-500">-</span>Dev</a>
+      <p>© <span id="year"></span> Aurora-Dev. Mit Sorgfalt entwickelt.</p>
+      <a href="#downloads" class="nav-link font-semibold transition-colors">Ressourcen entdecken <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs" aria-hidden="true"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+      const mobileToggle = document.getElementById("mobile-menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      function updateThemeButton() {
+        const isDark = root.classList.contains("dark");
+        themeIcon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        themeToggle.setAttribute("aria-label", isDark ? "Zum hellen Design wechseln" : "Zum dunklen Design wechseln");
+        themeToggle.title = isDark ? "Zum hellen Design wechseln" : "Zum dunklen Design wechseln";
+        document.querySelector('meta[name="theme-color"]').content = isDark ? "#080b14" : "#f5f7fb";
+      }
+      themeToggle.addEventListener("click", () => {
+        const isDark = root.classList.toggle("dark");
+        try { localStorage.setItem("aurora-theme", isDark ? "dark" : "light"); } catch (_) {}
+        updateThemeButton();
+      });
+
+      mobileToggle.addEventListener("click", () => {
+        const expanded = mobileToggle.getAttribute("aria-expanded") === "true";
+        mobileToggle.setAttribute("aria-expanded", String(!expanded));
+        mobileToggle.setAttribute("aria-label", expanded ? "Menü öffnen" : "Menü schließen");
+        mobileToggle.innerHTML = expanded
+          ? '<i class="fa-solid fa-bars" aria-hidden="true"></i>'
+          : '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+        mobileMenu.classList.toggle("hidden", expanded);
+      });
+      mobileMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        mobileToggle.setAttribute("aria-expanded", "false");
+        mobileToggle.setAttribute("aria-label", "Menü öffnen");
+        mobileToggle.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+      }));
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      updateThemeButton();
+    })();
+  </script>
 </body>
 </html>
